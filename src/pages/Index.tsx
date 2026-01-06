@@ -32,11 +32,11 @@ const barData = [
 ];
 
 const tableData = [
-  { id: 1, metric: 'Конверсия', value: '3.2%', change: '+0.5%', status: 'up' },
-  { id: 2, metric: 'Средний чек', value: '₽4,250', change: '+12%', status: 'up' },
-  { id: 3, metric: 'Отказы', value: '42%', change: '-5%', status: 'down' },
-  { id: 4, metric: 'Время на сайте', value: '3:24', change: '+18s', status: 'up' },
-  { id: 5, metric: 'Новые клиенты', value: '1,284', change: '+234', status: 'up' },
+  { id: 1, metric: 'Мощность ГПА', value: '2,450 кВт', change: '+150 кВт', status: 'up', power: 2450 },
+  { id: 2, metric: 'Конверсия', value: '3.2%', change: '+0.5%', status: 'up' },
+  { id: 3, metric: 'Средний чек', value: '₽4,250', change: '+12%', status: 'up' },
+  { id: 4, metric: 'Отказы', value: '42%', change: '-5%', status: 'down' },
+  { id: 5, metric: 'Время на сайте', value: '3:24', change: '+18s', status: 'up' },
 ];
 
 const COLORS = ['hsl(var(--chart-1))', 'hsl(var(--chart-2))', 'hsl(var(--chart-3))', 'hsl(var(--chart-4))'];
@@ -99,46 +99,122 @@ const Speedometer = ({ value, max, title }: { value: number; max: number; title:
   );
 };
 
-const GasEngineIcon = () => (
-  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="20" width="40" height="26" rx="2" fill="hsl(var(--muted))" stroke="hsl(var(--primary))" strokeWidth="2.5"/>
-    
-    <rect x="12" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
-    <rect x="24" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
-    <rect x="36" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
-    
-    <line x1="16" y1="11" x2="16" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
-    <line x1="28" y1="11" x2="28" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
-    <line x1="40" y1="11" x2="40" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
-    
-    <circle cx="16" cy="8" r="3" fill="hsl(var(--accent))"/>
-    <circle cx="28" cy="8" r="3" fill="hsl(var(--accent))"/>
-    <circle cx="40" cy="8" r="3" fill="hsl(var(--accent))"/>
-    
-    <circle cx="16" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
-    <circle cx="28" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
-    <circle cx="40" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
-    
-    <rect x="10" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
-    <rect x="25" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
-    <rect x="40" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
-    
-    <path d="M48 28h5 M48 32h6 M48 36h4" stroke="hsl(var(--accent))" strokeWidth="2.5" strokeLinecap="round"/>
-    
-    <rect x="4" y="30" width="4" height="8" rx="1" fill="hsl(var(--muted-foreground))" fillOpacity="0.5"/>
-    
-    <line x1="12" y1="46" x2="44" y2="46" stroke="hsl(var(--border))" strokeWidth="2"/>
-  </svg>
+const SmokeParticle = ({ x, delay }: { x: number; delay: number }) => (
+  <circle 
+    cx={x} 
+    cy="8" 
+    r="2" 
+    fill="hsl(var(--muted-foreground))" 
+    opacity="0.6"
+    className="animate-smoke"
+    style={{ 
+      animationDelay: `${delay}s`,
+      animationDuration: '2s',
+      animationIterationCount: 'infinite'
+    }}
+  >
+    <animate
+      attributeName="cy"
+      from="8"
+      to="-5"
+      dur="2s"
+      begin={`${delay}s`}
+      repeatCount="indefinite"
+    />
+    <animate
+      attributeName="opacity"
+      from="0.6"
+      to="0"
+      dur="2s"
+      begin={`${delay}s`}
+      repeatCount="indefinite"
+    />
+    <animate
+      attributeName="r"
+      from="2"
+      to="4"
+      dur="2s"
+      begin={`${delay}s`}
+      repeatCount="indefinite"
+    />
+  </circle>
 );
 
+const GasEngineIcon = ({ power }: { power: number }) => {
+  const isRunning = power > 0;
+  
+  return (
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="20" width="40" height="26" rx="2" fill="hsl(var(--muted))" stroke="hsl(var(--primary))" strokeWidth="2.5"/>
+      
+      <rect x="12" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+      <rect x="24" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+      <rect x="36" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+      
+      <line x1="16" y1="11" x2="16" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="28" y1="11" x2="28" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="40" y1="11" x2="40" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+      
+      <circle cx="16" cy="8" r="3" fill="hsl(var(--accent))"/>
+      <circle cx="28" cy="8" r="3" fill="hsl(var(--accent))"/>
+      <circle cx="40" cy="8" r="3" fill="hsl(var(--accent))"/>
+      
+      {isRunning && (
+        <>
+          <SmokeParticle x={16} delay={0} />
+          <SmokeParticle x={16} delay={0.4} />
+          <SmokeParticle x={16} delay={0.8} />
+          <SmokeParticle x={28} delay={0.2} />
+          <SmokeParticle x={28} delay={0.6} />
+          <SmokeParticle x={28} delay={1.0} />
+          <SmokeParticle x={40} delay={0.1} />
+          <SmokeParticle x={40} delay={0.5} />
+          <SmokeParticle x={40} delay={0.9} />
+        </>
+      )}
+      
+      <circle cx="16" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+      <circle cx="28" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+      <circle cx="40" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+      
+      <rect x="10" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+      <rect x="25" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+      <rect x="40" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+      
+      <path d="M48 28h5 M48 32h6 M48 36h4" stroke="hsl(var(--accent))" strokeWidth="2.5" strokeLinecap="round"/>
+      
+      <rect x="4" y="30" width="4" height="8" rx="1" fill="hsl(var(--muted-foreground))" fillOpacity="0.5"/>
+      
+      <line x1="12" y1="46" x2="44" y2="46" stroke="hsl(var(--border))" strokeWidth="2"/>
+    </svg>
+  );
+};
+
 const Index = () => {
+  const [enginePower, setEnginePower] = useState(2450);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setEnginePower(prev => {
+        const change = Math.random() > 0.5 ? 50 : -50;
+        const newPower = prev + change;
+        return Math.max(0, Math.min(3000, newPower));
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background dark">
       <div className="p-6 max-w-[1600px] mx-auto space-y-6">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-primary/10 rounded-lg border-2 border-primary/20">
-              <GasEngineIcon />
+            <div className="p-3 bg-primary/10 rounded-lg border-2 border-primary/20 relative">
+              <GasEngineIcon power={enginePower} />
+              <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded">
+                {enginePower.toLocaleString()} кВт
+              </div>
             </div>
             <div>
               <h1 className="text-4xl font-bold text-foreground mb-2">Аналитический Дашборд</h1>
@@ -375,7 +451,9 @@ const Index = () => {
                 {tableData.map((row) => (
                   <TableRow key={row.id} className="border-border hover:bg-muted/30 transition-colors">
                     <TableCell className="font-medium text-foreground">{row.metric}</TableCell>
-                    <TableCell className="text-foreground">{row.value}</TableCell>
+                    <TableCell className="text-foreground">
+                      {row.metric === 'Мощность ГПА' ? `${enginePower.toLocaleString()} кВт` : row.value}
+                    </TableCell>
                     <TableCell className={row.status === 'up' ? 'text-green-500' : 'text-red-500'}>
                       <span className="flex items-center gap-1">
                         <Icon name={row.status === 'up' ? 'TrendingUp' : 'TrendingDown'} size={16} />
