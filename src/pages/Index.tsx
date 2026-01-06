@@ -100,17 +100,17 @@ const Speedometer = ({ value, max, title }: { value: number; max: number; title:
 };
 
 const GasEngineIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="12" width="24" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <rect x="12" y="16" width="6" height="12" rx="1" fill="currentColor" opacity="0.3"/>
-    <rect x="22" y="16" width="6" height="12" rx="1" fill="currentColor" opacity="0.3"/>
-    <circle cx="15" cy="22" r="2" fill="currentColor"/>
-    <circle cx="25" cy="22" r="2" fill="currentColor"/>
-    <line x1="15" y1="8" x2="15" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <line x1="25" y1="8" x2="25" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <path d="M32 20h4M32 24h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <rect x="10" y="30" width="4" height="3" rx="1" fill="currentColor"/>
-    <rect x="26" y="30" width="4" height="3" rx="1" fill="currentColor"/>
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="14" width="28" height="24" rx="2" stroke="hsl(var(--primary))" strokeWidth="3" fill="hsl(var(--primary))" fillOpacity="0.15"/>
+    <rect x="14" y="18" width="7" height="16" rx="1.5" fill="hsl(var(--primary))" fillOpacity="0.6"/>
+    <rect x="27" y="18" width="7" height="16" rx="1.5" fill="hsl(var(--primary))" fillOpacity="0.6"/>
+    <circle cx="17.5" cy="26" r="2.5" fill="hsl(var(--secondary))" stroke="hsl(var(--secondary))" strokeWidth="1.5"/>
+    <circle cx="30.5" cy="26" r="2.5" fill="hsl(var(--secondary))" stroke="hsl(var(--secondary))" strokeWidth="1.5"/>
+    <line x1="17.5" y1="8" x2="17.5" y2="14" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+    <line x1="30.5" y1="8" x2="30.5" y2="14" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+    <path d="M38 23h6M38 28h5" stroke="hsl(var(--accent))" strokeWidth="3" strokeLinecap="round"/>
+    <rect x="12" y="36" width="5" height="4" rx="1" fill="hsl(var(--primary))"/>
+    <rect x="31" y="36" width="5" height="4" rx="1" fill="hsl(var(--primary))"/>
   </svg>
 );
 
