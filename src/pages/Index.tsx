@@ -99,14 +99,34 @@ const Speedometer = ({ value, max, title }: { value: number; max: number; title:
   );
 };
 
+const GasEngineIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="12" width="24" height="20" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <rect x="12" y="16" width="6" height="12" rx="1" fill="currentColor" opacity="0.3"/>
+    <rect x="22" y="16" width="6" height="12" rx="1" fill="currentColor" opacity="0.3"/>
+    <circle cx="15" cy="22" r="2" fill="currentColor"/>
+    <circle cx="25" cy="22" r="2" fill="currentColor"/>
+    <line x1="15" y1="8" x2="15" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="25" y1="8" x2="25" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M32 20h4M32 24h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    <rect x="10" y="30" width="4" height="3" rx="1" fill="currentColor"/>
+    <rect x="26" y="30" width="4" height="3" rx="1" fill="currentColor"/>
+  </svg>
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background dark">
       <div className="p-6 max-w-[1600px] mx-auto space-y-6">
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-foreground mb-2">Аналитический Дашборд</h1>
-            <p className="text-muted-foreground">Мониторинг ключевых показателей эффективности</p>
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-primary/10 rounded-lg border-2 border-primary/20">
+              <GasEngineIcon />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-foreground mb-2">Аналитический Дашборд</h1>
+              <p className="text-muted-foreground">Мониторинг ключевых показателей эффективности</p>
+            </div>
           </div>
           <div className="flex gap-2">
             <Card className="px-4 py-2 bg-card/50 border-border">
