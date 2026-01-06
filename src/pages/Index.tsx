@@ -100,17 +100,34 @@ const Speedometer = ({ value, max, title }: { value: number; max: number; title:
 };
 
 const GasEngineIcon = () => (
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="14" width="28" height="24" rx="2" stroke="hsl(var(--primary))" strokeWidth="3" fill="hsl(var(--primary))" fillOpacity="0.15"/>
-    <rect x="14" y="18" width="7" height="16" rx="1.5" fill="hsl(var(--primary))" fillOpacity="0.6"/>
-    <rect x="27" y="18" width="7" height="16" rx="1.5" fill="hsl(var(--primary))" fillOpacity="0.6"/>
-    <circle cx="17.5" cy="26" r="2.5" fill="hsl(var(--secondary))" stroke="hsl(var(--secondary))" strokeWidth="1.5"/>
-    <circle cx="30.5" cy="26" r="2.5" fill="hsl(var(--secondary))" stroke="hsl(var(--secondary))" strokeWidth="1.5"/>
-    <line x1="17.5" y1="8" x2="17.5" y2="14" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
-    <line x1="30.5" y1="8" x2="30.5" y2="14" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M38 23h6M38 28h5" stroke="hsl(var(--accent))" strokeWidth="3" strokeLinecap="round"/>
-    <rect x="12" y="36" width="5" height="4" rx="1" fill="hsl(var(--primary))"/>
-    <rect x="31" y="36" width="5" height="4" rx="1" fill="hsl(var(--primary))"/>
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="20" width="40" height="26" rx="2" fill="hsl(var(--muted))" stroke="hsl(var(--primary))" strokeWidth="2.5"/>
+    
+    <rect x="12" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+    <rect x="24" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+    <rect x="36" y="24" width="8" height="18" rx="1" fill="hsl(var(--primary))" fillOpacity="0.7"/>
+    
+    <line x1="16" y1="11" x2="16" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+    <line x1="28" y1="11" x2="28" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+    <line x1="40" y1="11" x2="40" y2="20" stroke="hsl(var(--primary))" strokeWidth="3" strokeLinecap="round"/>
+    
+    <circle cx="16" cy="8" r="3" fill="hsl(var(--accent))"/>
+    <circle cx="28" cy="8" r="3" fill="hsl(var(--accent))"/>
+    <circle cx="40" cy="8" r="3" fill="hsl(var(--accent))"/>
+    
+    <circle cx="16" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+    <circle cx="28" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+    <circle cx="40" cy="33" r="3" fill="hsl(var(--secondary))" stroke="hsl(var(--foreground))" strokeWidth="1.5"/>
+    
+    <rect x="10" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+    <rect x="25" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+    <rect x="40" y="44" width="6" height="4" rx="1" fill="hsl(var(--primary))"/>
+    
+    <path d="M48 28h5 M48 32h6 M48 36h4" stroke="hsl(var(--accent))" strokeWidth="2.5" strokeLinecap="round"/>
+    
+    <rect x="4" y="30" width="4" height="8" rx="1" fill="hsl(var(--muted-foreground))" fillOpacity="0.5"/>
+    
+    <line x1="12" y1="46" x2="44" y2="46" stroke="hsl(var(--border))" strokeWidth="2"/>
   </svg>
 );
 
